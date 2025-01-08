@@ -1,0 +1,38 @@
+# Archivos de entorno virtual
+venv/
+.env
+
+# Archivos de configuración específicos del sistema
+*.pyc
+*.pyo
+__pycache__/
+*.log
+
+# Archivos de sistema operativo
+.DS_Store
+Thumbs.db
+
+# Archivos relacionados con Docker
+*.env
+docker-compose.override.yml
+
+# Archivos y carpetas de imágenes procesadas y subidas
+uploads/
+processed/
+*.jpg
+*.jpeg
+*.png
+
+# Archivos de dependencia generados
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Configuración de IDEs y editores
+.vscode/
+.idea/
+*.sublime-project
+*.sublime-workspace
+
+# Otros
+*.bak
+*.swp
