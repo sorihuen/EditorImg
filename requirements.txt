@@ -1,4 +1,10 @@
 Flask
 Pillow
-gunicorn
+gunicorn==20.1.0
+rembg==2.0.61
+onnxruntime
+numba==0.56.0
+
+
+
 
