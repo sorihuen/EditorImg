@@ -20,19 +20,3 @@ Sigue estos pasos para configurar y ejecutar la aplicación:
 ### 1. Clona este repositorio
 ```sh
 git clone https://github.com/sorihuen/EditorImg.git
-
-Uso de la API
-Endpoints principales
-Eliminar fondo de una imagen
-URL: POST /remove_bg/
-Sube una imagen y elimina su fondo.
-
-Rotar una imagen
-URL: POST /rotate/
-Sube una imagen y especifica un ángulo para rotarla.
-
-Aplicar filtros a una imagen
-URL: POST /filtros/
-Sube una imagen y selecciona un filtro (blanco_negro, sepia, etc.).
-
-Para más detalles sobre los parámetros y respuestas, consulta la documentación interactiva.
