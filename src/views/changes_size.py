@@ -20,6 +20,41 @@ def change_size(image, scale_factor=0.5):
 
 @resize_blueprint.route('/', methods=['POST'], strict_slashes=False)
 def resize_endpoint():
+    """
+    Resize an Image by Scale Factor
+    ---
+    tags:
+      - Image Resizing
+    parameters:
+      - name: file
+        in: formData
+        type: file
+        required: true
+        description: The image file to resize
+      - name: scale_factor
+        in: formData
+        type: string
+        required: false
+        description: Scale factor for resizing (default is 0.5; e.g., 0.5 reduces size by half, 2.0 doubles size)
+    responses:
+      200:
+        description: Image successfully resized
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+            original_filename:
+              type: string
+            resized_filename:
+              type: string
+            filepath:
+              type: string
+      400:
+        description: Bad request, invalid input
+      500:
+        description: Internal server error
+    """
     try:
         if 'file' not in request.files:
             return jsonify({'error': 'No file provided'}), 400

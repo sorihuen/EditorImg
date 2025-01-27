@@ -28,6 +28,51 @@ def crop(image, margin=50, crop_width=False, crop_height=False):
 
 @crop_blueprint.route('/', methods=['POST'], strict_slashes=False)
 def crop_endpoint():
+    """
+    Crop an Image
+    ---
+    tags:
+      - Image Cropping
+    parameters:
+      - name: file
+        in: formData
+        type: file
+        required: true
+        description: The image file to crop
+      - name: margin
+        in: formData
+        type: integer
+        required: false
+        description: The margin to crop from each side (default is 50)
+      - name: crop_width
+        in: formData
+        type: boolean
+        required: false
+        description: Crop only the width (left and right). Default is false
+      - name: crop_height
+        in: formData
+        type: boolean
+        required: false
+        description: Crop only the height (top and bottom). Default is false
+    responses:
+      200:
+        description: Image successfully cropped
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+            original_filename:
+              type: string
+            cropped_filename:
+              type: string
+            filepath:
+              type: string
+      400:
+        description: Bad request, invalid input
+      500:
+        description: Internal server error
+    """
     try:
         if 'file' not in request.files:
             return jsonify({'error': 'No file provided'}), 400

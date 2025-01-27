@@ -1,13 +1,19 @@
 from flask import Flask
+from flasgger import Swagger
 from src.views.convert import convert_blueprint
 from src.views.remove_background import remove_bg_blueprint
 from src.views.rotation import rotate_blueprint
 from src.views.filter import filtros_blueprint
 from src.views.crop_image import crop_blueprint
 from src.views.changes_size import resize_blueprint
+
 import os
 
 app = Flask(__name__)
+# Configuración básica de Swagger
+
+# Configuración básica de Swagger
+swagger = Swagger(app)
 
 # Configuración de la carpeta para guardar imágenes
 UPLOAD_FOLDER = './img'

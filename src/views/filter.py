@@ -26,6 +26,44 @@ def aplicar_filtro(imagen, filtro='blanco_negro'):
 
 @filtros_blueprint.route('/', methods=['POST'], strict_slashes=False)
 def aplicar_filtro_endpoint():
+    """
+    Apply Filter to an Image
+    ---
+    tags:
+      - Image Filters
+    parameters:
+      - name: file
+        in: formData
+        type: file
+        required: true
+        description: The image file to apply the filter
+      - name: filtro
+        in: formData
+        type: string
+        required: false
+        description: |
+          The filter to apply (default is "blanco_negro").
+          Available options: blanco_negro, sepia, borroso, nitidez, invertir.
+    responses:
+      200:
+        description: Filter applied successfully
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+            original_filename:
+              type: string
+            filtered_filename:
+              type: string
+            filepath:
+              type: string
+      400:
+        description: Bad request, invalid input
+      500:
+        description: Internal server error
+    """
+    
     try:
         # Verificar si se ha enviado un archivo
         if 'file' not in request.files:

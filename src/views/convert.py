@@ -8,6 +8,41 @@ UPLOAD_FOLDER = './img'
 
 @convert_blueprint.route('/', methods=['POST'], strict_slashes=False)
 def convert_image():
+    """
+    Convert Image to a Different Format
+    ---
+    tags:
+      - Image Conversion
+    parameters:
+      - name: file
+        in: formData
+        type: file
+        required: true
+        description: The image file to convert
+      - name: format
+        in: formData
+        type: string
+        required: true
+        description: Desired format (e.g., jpg, png, gif, etc.)
+    responses:
+      200:
+        description: Image successfully converted
+        schema:
+          type: object
+          properties:
+            original_filename:
+              type: string
+            converted_filename:
+              type: string
+            message:
+              type: string
+            filepath:
+              type: string
+      400:
+        description: Bad request, invalid input
+      500:
+        description: Internal server error
+    """
     try:
         print(request.files)  # Imprime los archivos recibidos
         file = request.files.get('file')

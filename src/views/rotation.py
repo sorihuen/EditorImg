@@ -8,11 +8,67 @@ UPLOAD_FOLDER = './img'
 
 @rotate_blueprint.route('/', methods=['POST'])
 def rotate_image():
+    """
+    Rotate an Image
+    ---
+    tags:
+      - Image Manipulation
+    parameters:
+      - name: file
+        in: formData
+        type: file
+        required: true
+        description: The image file to be rotated.
+      - name: angle
+        in: formData
+        type: number
+        required: false
+        description: The angle to rotate the image (default is 90 degrees).
+    responses:
+      200:
+        description: Image rotated successfully
+        schema:
+          type: object
+          properties:
+            message:
+              type: string
+              description: Success message.
+            original_filename:
+              type: string
+              description: The original name of the uploaded file.
+            rotated_filename:
+              type: string
+              description: The name of the rotated file.
+            angle:
+              type: number
+              description: The angle used for rotation.
+            filepath:
+              type: string
+              description: Path to the rotated file.
+      400:
+        description: Bad request, invalid or missing input file.
+        schema:
+          type: object
+          properties:
+            error:
+              type: string
+              description: Error message.
+            files_received:
+              type: array
+              items:
+                type: string
+              description: List of file keys received in the request.
+            form_data:
+              type: object
+              additionalProperties:
+                type: string
+              description: The form data received in the request.
+      500:
+        description: Internal server error.
+    """
+    
     try:
-        # Debugging: imprimir lo que recibimos
-        # print("Files received:", request.files)
-        # print("Form data received:", request.form)
-        
+
         if 'file' not in request.files:
             return jsonify({
                 'error': 'No se proporcionó un archivo',
